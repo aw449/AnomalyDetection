@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 
 /**
- * Created by Anthony Wong on 7/5/2017.
+ * Helper function to calculate mean, std
  */
 public class StatisiticsHelper {
     LinkedList<PurchaseEvent> data;
@@ -11,12 +11,19 @@ public class StatisiticsHelper {
         this.data = data;
         size = data.size();
     }
-
+    
+    /**
+    * Finds the mean
+    * @param sum
+    */
     public double getMean(double sum)
     {
         return sum/size;
     }
-
+    
+    /**
+    * Finds the sum
+    */
     public double getSum()
     {
         double sum = 0.0;
@@ -26,7 +33,9 @@ public class StatisiticsHelper {
         return sum;
     }
 
-
+    /**
+    * Finds the standard deviation
+    */
     public double getSTD(double mean){
         double deviation = 0;
         for(PurchaseEvent pEvent: data){
