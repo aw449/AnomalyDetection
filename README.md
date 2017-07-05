@@ -64,7 +64,7 @@ The main program can be executed with
 
 ./run.sh yourBatchFile yourStreamFile yourOutputFile
 
-All anomalies will be written to _yourOutputFile
+All anomalies will be written to _yourOutputFile_
 
 # Dependecies
 - gson-2.8.1
