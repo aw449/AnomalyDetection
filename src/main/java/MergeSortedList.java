@@ -1,11 +1,13 @@
 
-
-
-
 import java.util.*;
 
-public class MergeSortedList {
 
+public class MergeSortedList {
+    /*
+    * Merges k sorted arrays into one.
+    * @params userPurchases, t
+    * @return Returns a sorted array of the last t elements.
+    */
     public LinkedList<PurchaseEvent> MergeLists(LinkedList<LinkedList<PurchaseEvent>> userPurchases, int t){
         int k = userPurchases.size();
         if(k == 0){
@@ -49,7 +51,9 @@ public class MergeSortedList {
         return result;
     }
 
-
+    /*
+    * Helper class used to associate the origin of a purchaseEvent to its iterator
+    */
     private class HeapNode{
         private PurchaseEvent purchaseEvent;
         private int listPosition;
@@ -67,16 +71,18 @@ public class MergeSortedList {
             return listPosition;
         }
     }
-
+    /*
+    * Custom comparator class used to compare purchaseEvents.  Sorts in descending order
+    */
     public class PurchaseEventComparator implements Comparator<HeapNode>
     {
         @Override
         public int compare(HeapNode a,HeapNode b){
             if(a.getPurchaseEvent().getTimeStamp().getTime() < b.getPurchaseEvent().getTimeStamp().getTime()){
-                return -1;
+                return 1;
             }
             else if(a.getPurchaseEvent().getTimeStamp().getTime() > b.getPurchaseEvent().getTimeStamp().getTime()){
-                return 1;
+                return -1;
             }
 
             return 0;
