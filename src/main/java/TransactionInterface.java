@@ -1,8 +1,8 @@
-/**
- * Created by Anthony Wong on 7/2/2017.
- */
-import java.util.Date;
 
+import java.util.Date;
+/**
+* Java Object representation of the json objects
+*/
 public interface TransactionInterface {}
 
 class BaseEvent implements TransactionInterface{
