@@ -5,16 +5,14 @@ import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
-import java.nio.Buffer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+* StreamParser manages the parsing of the stream of json objects into java objects with gson
+*/
 public class StreamParser {
     private static final Logger LOGGER = Logger.getLogger(AnomalyDetection.class.getName());
     private final static Gson gson = buildGson();
@@ -26,7 +24,9 @@ public class StreamParser {
         gsonBuilder.setDateFormat("yyyy-MM-dd hh:mm:ss");
         return gsonBuilder.create();
     }
-
+    /**
+    * Used because the json field names do not match with Java camelcase style
+    */
     private static class JavaCodeConventionStrategy implements FieldNamingStrategy{
 
         @Override
@@ -42,7 +42,9 @@ public class StreamParser {
         }
     }
 
-
+    /**
+    * Custom deserializer to map the different JSON objects that we are expecting
+    */
     private static class TransactionInterfaceDeserializer implements JsonDeserializer<TransactionInterface> {
 
         @Override
