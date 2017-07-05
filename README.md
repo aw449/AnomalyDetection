@@ -65,5 +65,7 @@ All anaomalies will be written the <yourOutputFile>
 
 # Dependecies
 - gson-2.8.1
+
+
 run.sh expects the gson-2.8.1.jar to be located in the src/main/java folder.
 The code is expected to be compiled using Java1.8
