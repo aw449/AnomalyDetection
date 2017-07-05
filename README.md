@@ -56,6 +56,9 @@ Since the number of users are unknown at the start of the program and user ids a
 # Keeping track of a User's Social Network
 The solution uses a dictionary structure that stores Users in Key,Value pairs as <User, User's Social Network> and tracks all users who are within D steps of the User Key.  This prevents the need for a costly breadth-first search at every transaction event.  Any transaction events that the User recieves are also automatically pushed to the User's Social Network.  A breadth first search is only performed if a befriend or unfriend event occurs within its social network.
 
+# Merging k sorted lists
+Merging k sorted lists is performed in O(nklog(k)).  A pointer is placed at the tail of every list and each tail element is placed into a maxheap.  The root of the heap is taken out and the pointer for that list is decremented and the next element for that list is placed into the maxheap.  This continues until we reach a size T sorted array or there are no more values to sort
+
 # Running Programs
 The main program can be executed with
 
@@ -68,4 +71,5 @@ All anaomalies will be written the <yourOutputFile>
 
 
 run.sh expects the gson-2.8.1.jar to be located in the src/main/java folder.
+
 The code is expected to be compiled using Java1.8
