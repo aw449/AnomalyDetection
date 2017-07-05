@@ -62,9 +62,9 @@ Merging k sorted lists is performed in O(nklog(k)).  A pointer is placed at the 
 # Running Programs
 The main program can be executed with
 
-./run.sh <yourBatchFile> <yourStreamFile> <yourOutputFile>
+./run.sh yourBatchFile yourStreamFile yourOutputFile
 
-All anaomalies will be written the <yourOutputFile>
+All anomalies will be written to _yourOutputFile
 
 # Dependecies
 - gson-2.8.1
