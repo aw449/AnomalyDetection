@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- * Created by Anthony Wong on 7/4/2017.
+ * Adjacency List Graph representation
  */
 public class Graph {
     public HashMap<UserNode,HashSet<UserNode>> graph;
@@ -13,7 +13,9 @@ public class Graph {
         this.graphSize = 0;
     }
 
-
+    /**
+     * Adds a node to the graph and creates a new adjacency list
+    */
     public void addNode(UserNode userNode){
         if(!hasNode(userNode)) {
             HashSet<UserNode> adjList = new HashSet<UserNode>();
@@ -21,15 +23,28 @@ public class Graph {
             idList.put(userNode.getId(), userNode);
         }
     }
-
+    /**
+     * Gets the UserNode Obj given its id
+     * @param id
+     * @return UserNode
+    */
     public UserNode getNode(Integer id){
         return idList.get(id);
     }
-
+    
+    /**
+     * Checks the graph if the Node exists
+     * @param userNode
+     * @return boolean
+    */
     public boolean hasNode(UserNode userNode){
         return graph.containsKey(userNode);
     }
-
+    
+    /**
+     * Adds an undirected edge to the graph
+     * @param userNode u, userNode w
+    */
     public void addEdge(UserNode u, UserNode w){
         HashSet<UserNode> uList;
         HashSet<UserNode> wList;
@@ -50,7 +65,10 @@ public class Graph {
             wList.add(u);
         }
     }
-
+    /**
+     * Removes an undirected edge to the graph
+     * @param userNode u, userNode w
+    */
     public void removeEdge(UserNode u, UserNode w){
         HashSet<UserNode> uList;
         HashSet<UserNode> wList;
@@ -61,8 +79,12 @@ public class Graph {
             wList.remove(u);
         }
     }
-
-
+    
+    /**
+     * Performs a level-aware BFS, stops after depth d and returns all nodes with d steps of the startnode
+     * @param startnode, d
+     * @return HashSet<UserNode>
+    */
     public HashSet<UserNode> BFS(UserNode startNode, int d){
         if(startNode.getId()- 1 >= this.graph.size() && startNode.getId()-1 > graphSize){
             graphSize = startNode.getId();
