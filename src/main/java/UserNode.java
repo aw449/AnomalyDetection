@@ -1,10 +1,9 @@
 
 
 import java.util.LinkedList;
-
 /**
- * Created by Anthony Wong on 7/4/2017.
- */
+* Represents a user in our social network
+*/
 public class UserNode{
     private int id;
     private int t;
@@ -67,7 +66,9 @@ public class UserNode{
         UserNode userNode = (UserNode) obj;
         return userNode.getId() == this.getId();
     }
-
+    /**
+    * Observer Update function.  Recieves updates based on its subscription list
+    */
     public boolean update(PurchaseEvent purchaseEvent){
         if(purchaseEvent.getId() == this.id) {
             userHistory.add(purchaseEvent);
@@ -99,7 +100,9 @@ public class UserNode{
         return false;
     }
 
-
+    /**
+    * Called when the user's social network changes and it's social network transactions need to be recomputed 
+    */
     public void updateSocialNetwork(LinkedList<PurchaseEvent> newSocialNetworkList, double mean, double std, double sum){
         this.socialNetworkHistory = newSocialNetworkList;
         this.mean = mean;
