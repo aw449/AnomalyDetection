@@ -9,8 +9,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Created by Anthony Wong on 7/3/2017.
- */
+* Main class that finds if a purchase is anomalous.
+* Which is defined as: "more than 3 standard deviations from the mean of the last T purchases in the user's Dth degree social network"
+*/
 public class AnomalyDetection {
     private static final Logger LOGGER = Logger.getLogger(AnomalyDetection.class.getName());
     private static int d;
@@ -24,7 +25,10 @@ public class AnomalyDetection {
         this.streamData = new StreamData(outputFile);
 
     }
-
+    /**
+    * On a befriend/unfriend event the social networks need to be adjusted to reflect the new change.
+    * The last T purchases in the user's Dth degree network will be recomputed.
+    */
     public static void socialNetworkChange(UserNode a, UserNode b){
         HashSet<UserNode> userChanges = new HashSet<>();
         userChanges.addAll(streamData.getSubscriberList(a));
@@ -41,7 +45,9 @@ public class AnomalyDetection {
             }
         }
     }
-
+    /**
+    * Handles the stream_log file and parses the stream.
+    */
     public static void ProcessStream(String streamFile) throws FileNotFoundException{
         if(!historyRead){
             LOGGER.log(Level.WARNING,"Please run BuildHistory before running ProcessStream");
@@ -65,6 +71,7 @@ public class AnomalyDetection {
                     PurchaseEvent purchaseEvent = (PurchaseEvent) base;
 
                     UserNode node = socialNetwork.getNode(purchaseEvent.getId());
+                    // If a new/unknown user is found in the transaction log it is ignored.
                     if(node != null){
                         streamData.sendStreamData(node,purchaseEvent);
                     }
@@ -92,7 +99,9 @@ public class AnomalyDetection {
             LOGGER.log(Level.WARNING,ex.toString(),ex);
         }
     }
-
+    /**
+    * Handles the batch_log file and initializes the Graph, subscription lists, and builds the history of all users in the network
+    */
     public static void BuildHistory(String batchFile) throws FileNotFoundException{
         JsonParser jsonParser = new JsonParser();
         StreamParser streamParser = new StreamParser();
